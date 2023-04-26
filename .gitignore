@@ -1,3 +1,8 @@
+.gitignore
+superGlue/
+loFTR/
+dkm/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
