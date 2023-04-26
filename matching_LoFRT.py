@@ -89,6 +89,6 @@ if __name__ == '__main__':
     s = time()
     mkpts0, mkpts1 = inference_loftr(img0, img1, True)
     ss = time()
-    print('mkpts0 =\n', mkpts0.shape)   #(1335, 2)
-    print('mkpts1 = \n', mkpts1.shape)  #(1335, 2)
-    print(ss - s)
+    print('mkpts0 =\n', mkpts0.shape)   #(3448, 2)
+    print('mkpts1 = \n', mkpts1.shape)  #(3448, 2)
+    print(ss - s)                       #1016.5355575084686
