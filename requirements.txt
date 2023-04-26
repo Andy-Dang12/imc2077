@@ -1,0 +1,4 @@
+kornia
+kornia_moons
+einops
+git+https://github.com/cavalli1234/AdaLAM
