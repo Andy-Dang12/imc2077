@@ -41,9 +41,7 @@ def inference():
     tensor_to_pil(vis_im, unnormalize=False).save(save_path)
     return
 
-def inference_dkm(image_0_BGR:cv2.Mat, image_1_BGR:cv2.Mat,
-                  mkpts0_loftr_all:    np.ndarray=...,
-                  mkpts0_superglue_all:np.ndarray=... ) -> tuple[np.ndarray, np.ndarray]:
+def inference_dkm(image_0_BGR:cv2.Mat, image_1_BGR:cv2.Mat, num:int=500) -> tuple[np.ndarray, np.ndarray]:
     # ===========================
     #            DKM
     # ===========================
@@ -62,11 +60,8 @@ def inference_dkm(image_0_BGR:cv2.Mat, image_1_BGR:cv2.Mat,
         dense_certainty = dense_certainty.pow(0.6)
 
         sparse_matches, sparse_certainty = dkm_model.sample(
-            dense_matches, dense_certainty,
+            dense_matches, dense_certainty, num)
             # max(min(500, (len(mkpts0_loftr_all) + len(mkpts0_superglue_all)) // int(4 * len(w_h_muts_dkm))), 100),
-            max(min(500, (3448 + 1335) // int(4 * len(w_h_muts_dkm))), 100)
-        )
-
         mkpts0_dkm = sparse_matches[:, :2]
         mkpts1_dkm = sparse_matches[:, 2:]
         h, w, c = image_0_BGR.shape
